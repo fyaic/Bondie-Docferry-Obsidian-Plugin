@@ -1,0 +1,29 @@
+{
+  "name": "bondie-docferry-obsidian-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Mobile-first Obsidian plugin for Bondie-Docferry.",
+  "scripts": {
+    "build": "tsc --noEmit && node esbuild.config.mjs production",
+    "dev": "node esbuild.config.mjs",
+    "lint": "eslint src --max-warnings 0",
+    "release:validate": "node scripts/validate-release.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/*.test.mts",
+    "verify": "npm run lint && npm test && npm run build && node --check main.js && npm run release:validate"
+  },
+  "devDependencies": {
+    "@codemirror/state": "6.5.0",
+    "@codemirror/view": "6.38.6",
+    "@eslint/js": "9.39.5",
+    "@eslint/json": "0.14.0",
+    "@types/node": "22.13.14",
+    "esbuild": "^0.25.0",
+    "eslint": "9.39.5",
+    "eslint-plugin-obsidianmd": "0.4.1",
+    "obsidian": "1.13.1",
+    "typescript": "5.7.3",
+    "typescript-eslint": "8.66.0"
+  }
+}

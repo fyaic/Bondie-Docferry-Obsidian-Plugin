@@ -1,0 +1,10 @@
+{
+  "id": "bondie-docferry",
+  "name": "Bondie-Docferry",
+  "version": "0.1.0",
+  "minAppVersion": "1.11.4",
+  "description": "Mobile-first link capture, DocFerry import, and share management.",
+  "author": "Bondie Labs",
+  "authorUrl": "https://bondie.io",
+  "isDesktopOnly": false
+}

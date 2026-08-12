@@ -1,0 +1,10 @@
+node_modules/
+main.js
+dist/
+.env
+.env.*
+data.json
+*.log
+.DS_Store
+Thumbs.db
+.cache/

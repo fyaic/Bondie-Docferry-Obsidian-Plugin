@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run verify
+      - run: npm audit --audit-level=high
+      - name: Confirm tracked source remains clean
+        run: git diff --exit-code
+      - name: Validate tag and stage install assets
+        shell: bash
+        run: |
+          manifest_version="$(node -p "require('./manifest.json').version")"
+          test "$manifest_version" = "$GITHUB_REF_NAME"
+          mkdir -p dist
+          cp manifest.json main.js styles.css dist/
+          test "$(find dist -maxdepth 1 -type f | wc -l | tr -d ' ')" = "3"
+      - name: Attest release provenance
+        uses: actions/attest@v4
+        with:
+          subject-path: "dist/*"
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            dist/manifest.json \
+            dist/main.js \
+            dist/styles.css \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "$GITHUB_REF_NAME" \
+            --notes-file RELEASE_NOTES.md

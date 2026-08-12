@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run verify
+      - run: npm audit --audit-level=high
+      - name: Verify source branch has no built bundle or private files
+        shell: bash
+        run: |
+          test ! -e data.json
+          test ! -e .env
+          ! git ls-files | grep -E '(^|/)(\.env|data\.json|main\.js)$'

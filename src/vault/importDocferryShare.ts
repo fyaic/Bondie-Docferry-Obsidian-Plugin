@@ -18,6 +18,7 @@ import {
   joinVaultPath,
   validateVaultRelativePath,
 } from "./vaultPath";
+import { removeMatchingLeadingTitle } from "./noteContent";
 
 const MAX_MOBILE_IMPORT_BYTES = 50 * 1024 * 1024;
 
@@ -67,11 +68,14 @@ export async function importDocFerryShareToVault(
   await ensureFolder(app, folder);
   const createdPaths: string[] = [];
   try {
-    const file = await app.vault.create(notePath, session.payload.markdown);
+    const file = await app.vault.create(
+      notePath,
+      removeMatchingLeadingTitle(session.payload.markdown, session.payload.title),
+    );
     createdPaths.push(notePath);
     for (const asset of downloads) {
       await ensureParentFolder(app, asset.path);
-      await app.vault.adapter.writeBinary(asset.path, asset.body);
+      await app.vault.createBinary(asset.path, asset.body);
       createdPaths.push(asset.path);
     }
     return {
@@ -113,7 +117,7 @@ async function planAssets(
     if (seen.has(path)) {
       throw new Error(`DocFerry import contains a duplicate path: ${path}`);
     }
-    if (await app.vault.adapter.exists(path)) {
+    if (app.vault.getAbstractFileByPath(path)) {
       throw new Error(`Import asset already exists: ${path}`);
     }
     seen.add(path);
@@ -127,7 +131,7 @@ async function nextAvailableImportPath(app: App, requestedPath: string): Promise
   const basePath = safeRequestedPath.endsWith(".md")
     ? safeRequestedPath.slice(0, -3)
     : safeRequestedPath;
-  if (!(await app.vault.adapter.exists(safeRequestedPath))) {
+  if (!app.vault.getAbstractFileByPath(safeRequestedPath)) {
     return safeRequestedPath;
   }
   for (let index = 2; index < 1000; index += 1) {
@@ -135,7 +139,7 @@ async function nextAvailableImportPath(app: App, requestedPath: string): Promise
       `${basePath}-${index}.md`,
       "Import note path",
     );
-    if (!(await app.vault.adapter.exists(candidate))) {
+    if (!app.vault.getAbstractFileByPath(candidate)) {
       return candidate;
     }
   }
@@ -171,8 +175,6 @@ async function rollbackCreatedPaths(app: App, paths: string[]): Promise<void> {
       const file = app.vault.getAbstractFileByPath(path);
       if (file instanceof TFile) {
         await app.fileManager.trashFile(file);
-      } else if (await app.vault.adapter.exists(path)) {
-        await app.vault.adapter.remove(path);
       }
     } catch {
       // Preserve the original import failure; cleanup is best-effort.

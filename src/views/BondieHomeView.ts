@@ -1448,7 +1448,7 @@ export class BondieHomeView extends ItemView {
       );
       await this.plugin.saveSettings();
       if (!this.isCurrentParse(generation, token)) return;
-      await this.saveCompletedResult(viewResult, { openNote: true, showCompletion: true });
+      await this.saveCompletedResult(viewResult, { openNote: false, showCompletion: true });
     } catch (error) {
       if (this.parseGeneration !== generation) return;
       const interruption = parseInterruption(error);
@@ -2112,6 +2112,7 @@ export class BondieHomeView extends ItemView {
   private openNoteReadyModal(history: LocalHistoryItem): void {
     new NoteReadyModal(this.app, {
       canShare: Boolean(this.docferryAvailable && this.activeResult?.parseJobId),
+      onOpenNote: () => this.openHistoryItem(history),
       onShare: () => this.shareActiveResult({ confirmed: true }),
       title: this.activeResult?.title ?? history.title,
     }).open();
@@ -2243,6 +2244,7 @@ function confirmPublicShare(app: App): Promise<boolean> {
 
 interface NoteReadyOptions {
   canShare: boolean;
+  onOpenNote: () => void | Promise<void>;
   onShare: () => void | Promise<void>;
   title: string;
 }
@@ -2269,6 +2271,15 @@ class NoteReadyModal extends Modal {
         : "The note is in your vault and stays private unless you share it later.",
     });
     const actions = this.contentEl.createDiv({ cls: "bdf-modal-actions bdf-note-ready-actions" });
+    const openNote = actions.createEl("button", {
+      cls: "mod-cta",
+      text: "Open note",
+      type: "button",
+    });
+    openNote.addEventListener("click", () => {
+      this.close();
+      void this.options.onOpenNote();
+    });
     if (this.options.canShare) {
       const share = actions.createEl("button", { text: "Share", type: "button" });
       share.addEventListener("click", () => {
@@ -2277,7 +2288,7 @@ class NoteReadyModal extends Modal {
       });
     }
     const keepPrivate = actions.createEl("button", {
-      cls: "mod-cta",
+      cls: "bdf-keep-private",
       text: "Keep private",
       type: "button",
     });
@@ -2721,14 +2732,15 @@ function renderAccountIdentity(
     cls: "bdf-account-avatar",
   });
   const fallback = initialsFromDisplayUser(user);
-  if (user?.picture) {
+  const pictureUrl = safeAvatarUrl(user?.picture);
+  if (pictureUrl) {
     const image = avatar.createEl("img", {
       attr: {
         alt: "",
         decoding: "async",
         loading: "lazy",
         referrerpolicy: "no-referrer",
-        src: user.picture,
+        src: pictureUrl,
       },
     });
     image.addEventListener("error", () => {
@@ -2750,6 +2762,16 @@ function renderAccountIdentity(
     details.createEl("p", { cls: "bdf-account-email", text: user.email });
   }
   details.createEl("p", { cls: "bdf-account-message", text: connectionMessage });
+}
+
+function safeAvatarUrl(value: string | null | undefined): string | null {
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.toString() : null;
+  } catch {
+    return null;
+  }
 }
 
 function membershipFromProduct(product: Record<string, unknown> | null): "docferry-pro" | "free" {

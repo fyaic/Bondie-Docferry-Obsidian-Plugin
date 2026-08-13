@@ -12,6 +12,7 @@ await esbuild.build({
   external: ["obsidian"],
   format: "cjs",
   logLevel: "info",
+  minify: prod,
   outfile: "main.js",
   sourcemap: prod ? false : "inline",
   target: "es2018",

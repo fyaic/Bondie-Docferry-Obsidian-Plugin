@@ -10,11 +10,22 @@ DocFerry Shares and provides a compact, paginated view of your own Shares.
 2. Paste a link into the single Home field.
 3. A public DocFerry Share imports directly into your configured Vault folder.
 4. Other supported links use your Bondie account and DocFerry Media-to-Note.
-5. A completed result is saved privately and opened as a native note.
-6. Keep it private, or explicitly create a public DocFerry link.
+5. A completed result is saved privately and shows a short action prompt.
+6. Open the native note, keep it private, or explicitly create a public DocFerry link.
 
 Generated and imported content is ordinary Markdown in your Vault. The plugin does
 not maintain a second local library or scan unrelated Vault files.
+
+## Installation Status
+
+Bondie-Docferry is currently a GitHub release candidate for Obsidian Community review.
+It is not yet listed in Obsidian's Community plugins directory.
+
+Reviewers and testers can download `main.js`, `manifest.json`, and `styles.css` from a
+matching GitHub release, place them in a `bondie-docferry` folder inside the test
+Vault's Community plugins directory, restart Obsidian, and enable Bondie-Docferry.
+Normal users should wait for the Community directory listing rather than install files
+manually.
 
 ## Account And Payment
 
@@ -30,12 +41,30 @@ Obsidian Community payment label is `Paid` because the primary workflow requires
 
 See [SUPPORT.md](SUPPORT.md) for subscription management and entitlement recovery.
 
+## Disclosures
+
+- **Payment:** `Paid`. Public Share import is free; Media-to-Note requires DocFerry Pro.
+- **Account:** A Bondie account is required for Media-to-Note, owner Shares, usage,
+  and account controls. Public Share import works signed out.
+- **Network:** Submitted links and authenticated actions use the hosted Bondie,
+  SynapseHub, and DocFerry services listed below. Account avatars may be loaded from
+  the HTTPS image URL supplied by the user's identity provider.
+- **Vault access:** The plugin writes only generated/imported notes and their declared
+  assets to user-selected folders. It does not scan unrelated Vault files.
+- **Clipboard:** Clipboard reads and writes happen only after explicit Paste or Copy
+  actions.
+- **Telemetry and ads:** None in the plugin client.
+- **Source availability:** This client is MIT-licensed and public. The hosted service
+  source is closed and is not included in this repository.
+
 ## Network And Data Use
 
 The plugin connects to `bondie-docferry.bondie.io` for product login, processing,
 account state, and the DocFerry bridge; `account.bondie.io` provides hosted account
-management; `docferry.bondie.io` serves public Share imports and assets. Links sent
-for Media-to-Note are processed by the hosted Bondie/DocFerry services.
+management; `docferry.bondie.io` serves public Share imports and assets. Account
+avatars may be requested from the HTTPS image host supplied by the selected identity
+provider, such as Google. Links sent for Media-to-Note are processed by the hosted
+Bondie/DocFerry services.
 
 The plugin reads the clipboard only after `Paste` and writes to it only after a Copy
 action. It stores its opaque product session with Obsidian SecretStorage. It does not
@@ -67,4 +96,4 @@ Each tagged release contains exactly the install assets expected by Obsidian:
 ## License
 
 The public plugin client is released under the [MIT License](LICENSE). Hosted service
-code is maintained separately and is not part of this repository.
+source is closed and is not part of this repository.

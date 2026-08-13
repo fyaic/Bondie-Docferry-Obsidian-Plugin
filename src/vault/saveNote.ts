@@ -10,6 +10,10 @@ import {
   joinVaultPath,
   validateVaultRelativePath,
 } from "./vaultPath";
+import {
+  removeMatchingLeadingTitle,
+  removeRemoteSourcePreview,
+} from "./noteContent";
 
 export interface SavedParseNote {
   file: TFile;
@@ -29,7 +33,10 @@ export async function saveParseResultToVault(
     app,
     joinVaultPath(folderPath, filename, "Note path"),
   );
-  const file = await app.vault.create(targetPath, result.markdown);
+  const file = await app.vault.create(
+    targetPath,
+    removeRemoteSourcePreview(removeMatchingLeadingTitle(result.markdown, result.title)),
+  );
 
   return {
     file,

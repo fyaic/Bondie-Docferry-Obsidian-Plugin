@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.1 - 2026-08-13
+
+- Prevent Obsidian's inline file title from duplicating a matching leading note title.
+- Clarify payment, account, network, Vault, clipboard, telemetry, and source disclosures.
+- Minify production bundles and run the complete repository through the release lint gate.
+- Use Obsidian Vault APIs for imported assets and reject non-HTTPS account avatars.
+- Keep the mobile completion prompt visible before opening a long note, with direct
+  Open note, Share, and Keep private choices.
+- Remove unreliable generated remote source-preview hotlinks from saved notes.
+
 ## 0.1.0 - 2026-08-12
 
 - Add one mobile-first link entry for public Share import and Media-to-Note.

@@ -16,6 +16,11 @@ The plugin does not scan your Vault, contacts, photos, or microphone. It reads t
 clipboard only when you press `Paste` and writes only when you press a Copy action.
 It does not include analytics or advertising telemetry.
 
+When an account profile includes an avatar, the plugin may load that image from the
+HTTPS URL supplied by the identity provider, such as Google. The provider receives a
+normal image request subject to its own privacy terms. Invalid and non-HTTPS avatar
+URLs are ignored.
+
 ## Local Storage
 
 - Settings, onboarding state, configured folders, pending-task recovery, and a small
@@ -31,8 +36,10 @@ It does not include analytics or advertising telemetry.
 `bondie-docferry.bondie.io` receives product-session requests, submitted source URLs,
 and a short owner-scoped task facade for mobile progress/recovery. Production
 Media-to-Note runs in DocFerry, which owns source processing, generated cloud results,
-provider credentials, quality, quota, and retention. Provider credentials are never
-returned to the plugin.
+provider credentials, quality, quota, and retention. DocFerry may use contracted AI
+and media-processing providers for this workflow; those providers are selected and
+controlled by the hosted service, not by the plugin client. Provider credentials are
+never returned to the plugin.
 
 Bondie terminal processing activity is removed after 30 days by default and can be
 deleted earlier from Account > Processing data when eligible. Deleting cloud activity

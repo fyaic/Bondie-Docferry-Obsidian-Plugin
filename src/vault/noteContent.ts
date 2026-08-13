@@ -6,12 +6,6 @@ export function removeMatchingLeadingTitle(markdown: string, title: string): str
   return markdown.slice(match[0].length);
 }
 
-export function removeRemoteSourcePreview(markdown: string): string {
-  return markdown
-    .replace(/^!\[Source preview\]\(<https?:\/\/[^>\n]+>\)[ \t]*\r?\n?/gim, "")
-    .replace(/^!\[Source preview\]\(https?:\/\/[^)\n]+\)[ \t]*\r?\n?/gim, "");
-}
-
 function normalizeTitle(value: string): string {
   return value
     .replace(/\\([\\`*_[\]{}<>()#+.!|-])/g, "$1")

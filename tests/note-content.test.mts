@@ -1,10 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import {
-  removeMatchingLeadingTitle,
-  removeRemoteSourcePreview,
-} from "../src/vault/noteContent.ts";
+import { removeMatchingLeadingTitle } from "../src/vault/noteContent.ts";
 
 test("removes only a matching leading level-one title", () => {
   assert.equal(
@@ -32,15 +29,10 @@ test("preserves different, nested, or non-leading headings", () => {
   );
 });
 
-test("removes only the generated remote source preview image", () => {
-  const generated = "![Source preview](<https://images.example/preview.jpg>)\n\n## Brief\nBody\n";
-  assert.equal(removeRemoteSourcePreview(generated), "\n## Brief\nBody\n");
+test("preserves a DocFerry source thumbnail while removing a duplicate title", () => {
+  const thumbnail = "![Source preview](<https://images.example/preview.jpg>)";
   assert.equal(
-    removeRemoteSourcePreview("![Chart](https://images.example/chart.png)\n"),
-    "![Chart](https://images.example/chart.png)\n",
-  );
-  assert.equal(
-    removeRemoteSourcePreview("![Source preview](images/local.png)\n"),
-    "![Source preview](images/local.png)\n",
+    removeMatchingLeadingTitle(`# Video title\n\n${thumbnail}\n\n## Brief\nBody\n`, "Video title"),
+    `${thumbnail}\n\n## Brief\nBody\n`,
   );
 });

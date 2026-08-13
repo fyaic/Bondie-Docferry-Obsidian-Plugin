@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 - 2026-08-13
+
+- Preserve DocFerry's validated source thumbnail when saving or sharing a generated
+  Media-to-Note note.
+
 ## 0.1.1 - 2026-08-13
 
 - Prevent Obsidian's inline file title from duplicating a matching leading note title.

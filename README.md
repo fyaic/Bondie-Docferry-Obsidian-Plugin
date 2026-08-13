@@ -94,7 +94,8 @@ See [Support](SUPPORT.md) for subscription management and entitlement recovery.
   and account controls. Public Share import works signed out.
 - **Network:** Submitted links and authenticated actions use hosted Bondie,
   SynapseHub, and DocFerry services. Account avatars may load from the HTTPS image URL
-  supplied by the user's identity provider.
+  supplied by the user's identity provider. Generated notes may retain DocFerry's
+  validated source thumbnail, which Obsidian loads from its HTTPS image host.
 - **Vault access:** The plugin writes only generated/imported notes and declared assets
   to user-selected folders. It does not scan unrelated Vault files.
 - **Clipboard:** Clipboard access happens only after explicit Paste or Copy actions.

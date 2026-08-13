@@ -1,15 +1,13 @@
-# Bondie-Docferry 0.1.1
+# Bondie-Docferry 0.1.2
 
-This release hardens the GitHub candidate for Obsidian Community review.
+This patch restores video thumbnails in generated Media-to-Note documents.
 
-It prevents a matching Markdown title from appearing twice when Obsidian shows its
-inline file title, and expands the public payment, account, network, Vault, clipboard,
-telemetry, avatar, and source disclosures. It also minifies the production bundle and
-routes imported assets through Obsidian's Vault APIs. On mobile, the private-save
-confirmation now stays visible before opening a long note and offers direct Open note,
-Share, and Keep private actions. It retains the mobile-first single-link workflow,
-native private Vault save, explicit DocFerry sharing, paginated Share management,
-processing recovery, display-only account identity, and shared DocFerry Pro usage.
-Public catalog submission is not part of this release.
+Bondie-Docferry now preserves DocFerry's validated source thumbnail when saving a
+generated note to the Vault and when creating a public Share from that result. The
+existing duplicate-title cleanup remains unchanged. Privacy documentation now also
+explains that Obsidian may load the retained thumbnail from its HTTPS image host.
+
+This is the current candidate for Obsidian Community review. Catalog submission is
+handled separately by the product team.
 
 Install assets: `main.js`, `manifest.json`, and `styles.css`.

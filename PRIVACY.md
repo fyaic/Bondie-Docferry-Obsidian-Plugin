@@ -1,6 +1,6 @@
 # Privacy
 
-Updated: 2026-08-12
+Updated: 2026-08-13
 
 Bondie-Docferry is a network-capable Obsidian plugin and hosted service.
 
@@ -20,6 +20,10 @@ When an account profile includes an avatar, the plugin may load that image from 
 HTTPS URL supplied by the identity provider, such as Google. The provider receives a
 normal image request subject to its own privacy terms. Invalid and non-HTTPS avatar
 URLs are ignored.
+
+A generated Media-to-Note document may include a validated source thumbnail supplied
+by DocFerry. Obsidian loads that remote image when the note is rendered, so the image
+host receives a normal HTTPS request subject to its own privacy terms.
 
 ## Local Storage
 

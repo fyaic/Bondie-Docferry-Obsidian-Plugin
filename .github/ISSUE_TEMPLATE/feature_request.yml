@@ -1,0 +1,40 @@
+name: Feature request
+description: Suggest an improvement to the plugin workflow.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the user problem before proposing a control or implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should become easier, clearer, or more reliable?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Product area
+      options:
+        - Home and link intake
+        - Media-to-Note
+        - Vault save and import
+        - Shares
+        - Account and membership
+        - Settings
+        - Accessibility
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: mobile
+    attributes:
+      label: Mobile considerations
+      description: Explain any one-handed use, narrow-screen, interruption, or recovery needs.

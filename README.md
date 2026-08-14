@@ -1,143 +1,173 @@
 # Bondie-Docferry
 
-**Turn links into notes where they belong: your Vault.**
+> Turn article, audio, and video links into notes — right where they belong: your Obsidian Vault.
+
+**English** · [中文](README.zh-CN.md) — [Engineering ›](ENGINEERING.md)
 
 [![Release](https://img.shields.io/github/v/release/fyaic/Bondie-Docferry-Obsidian-Plugin?display_name=tag&style=flat-square)](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases/latest)
 [![CI](https://img.shields.io/github/actions/workflow/status/fyaic/Bondie-Docferry-Obsidian-Plugin/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/actions/workflows/ci.yml)
 [![Obsidian](https://img.shields.io/badge/Obsidian-1.11.4%2B-7c3aed?style=flat-square)](manifest.json)
 [![License](https://img.shields.io/github/license/fyaic/Bondie-Docferry-Obsidian-Plugin?style=flat-square)](LICENSE)
 
-Bondie-Docferry is a mobile-first plugin that turns article, audio, and video links
-into native Markdown notes through DocFerry Media-to-Note. The same compact workspace
-imports public DocFerry Shares and lets you manage links you have published.
+You find something worth keeping — an article, a podcast episode, a video. Today that
+means a link rotting in a chat thread or a read-later app you never reopen.
 
-One field handles the whole intake flow. Notes are saved privately first. Reading and
-editing stay in Obsidian, and creating a public link is always a separate choice.
+Bondie-Docferry turns that link into a real Markdown note inside your Vault. One paste,
+and the content becomes something you can read, edit, link, and search — in the app you
+already live in.
 
-## Mobile Experience
+## One field for every link
 
-<table>
-  <tr>
-    <td align="center"><img src="docs/assets/android/home.png" alt="One link field on the Bondie-Docferry Home view" width="360"><br><strong>One place to start</strong><br><sub>Paste a Share, article, audio, or video link.</sub></td>
-    <td align="center"><img src="docs/assets/android/saved-private.png" alt="Private save completion prompt with Open note, Share, and Keep private actions" width="360"><br><strong>Private by default</strong><br><sub>Open the note, share it, or simply keep it private.</sub></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/assets/android/shares.png" alt="Paginated Shares view with copy and management actions" width="360"><br><strong>Share without losing control</strong><br><sub>Copy, open, update, stop, or delete Share history.</sub></td>
-    <td align="center"><img src="docs/assets/android/account.png" alt="Account view with connection, membership, and usage status" width="360"><br><strong>Useful account status</strong><br><sub>Identity, membership, and usage without exposing keys.</sub></td>
-  </tr>
-</table>
+<img src="docs/assets/android/home.png" alt="One link field on the Bondie-Docferry Home view" width="360">
 
-These screens were captured from the release candidate running in Obsidian `1.12.7`
-on a physical Android phone. Account details, usage values, and Share content were
-replaced in the rendering layer before capture; no Vault or service data was changed.
+**One place to start.** Paste a public DocFerry link, an article, an audio, or a video URL.
 
-## The Core Flow
+- The field tells you what it recognized and what will happen — the button becomes
+  **Import** or **Create note** — before you commit.
+- **Paste** pulls from your clipboard in one tap. Nothing reads your clipboard on its own.
+- While it works, you see plain-language progress: *Reading the link → Preparing the
+  transcript → Organizing key ideas → Writing your note.*
 
-```mermaid
-flowchart LR
-    A["Paste one link"] --> B{"What kind of link?"}
-    B -->|"Public DocFerry Share"| C["Import into your Vault"]
-    B -->|"Article, audio, or video"| D["DocFerry Media-to-Note"]
-    D --> E["Save a private Markdown note"]
-    E --> F{"Your choice"}
-    F --> G["Open and edit in Obsidian"]
-    F --> H["Keep private"]
-    F --> I["Create a public Share"]
-    I --> J["Manage in Shares"]
-    J --> K["Open or import on another device"]
+## From link to a note you own
+
+Paste a video link in the morning, and by the time you sit down, this is in your Vault:
+
+```
+Bondie Docferry/
+└── 2026-08-14 How I organize my research.md
 ```
 
-## What Makes It Different
+- **Plain Markdown, nothing else.** No proprietary format, no frontmatter you didn't
+  ask for. The note works in Obsidian, on GitHub, in any editor — forever.
+- **You choose where notes land.** Settings offer one folder for generated notes and one
+  for imports (defaults: `Bondie Docferry` and `Bondie Docferry/Imports`).
+- **Preview before it's final.** Title, summary, source site, rendered content — plus the
+  raw Markdown source if you want to see exactly what you're getting.
+- **Save note**, **Copy note**, or go straight to creating a public link — all from the
+  preview.
 
-| Principle | Product behavior |
-| --- | --- |
-| **One low-learning entry** | The Home field classifies public Share imports and supported external links for you. |
-| **Native ownership** | Generated and imported content is ordinary Markdown in user-selected Vault folders. |
-| **Private-first completion** | Processing creates a private note; publishing requires an explicit Share action. |
-| **Mobile resilience** | In-progress work survives foreground changes and can be resumed, cancelled, retried, or deleted. |
-| **Real Share lifecycle** | Owner Shares are paginated and provide state-appropriate copy, access, stop, and history controls. |
-| **Clear product boundaries** | Bondie sign-in, DocFerry processing, and the local Vault remain separate security domains. |
+## Private first — sharing is always a separate choice
 
-The plugin does not maintain a second content library or scan unrelated Vault files.
-See [Architecture and trust boundaries](docs/architecture.md) for the complete product
-flow.
+<img src="docs/assets/android/saved-private.png" alt="Private save completion prompt with Open note, Share, and Keep private actions" width="360">
 
-## Installation Status
+**Private by default.** Open the note, share it, or simply keep it private.
 
-Bondie-Docferry is currently a GitHub release candidate for Obsidian Community review.
-It is not yet listed in Obsidian's Community plugins directory.
+- Every finished note is saved privately first. No public link exists unless you create one.
+- When the note is ready, you choose: **Open note**, **Share**, or **Keep private**.
+- Sharing asks before it acts, in plain words: *"Anyone with the link can view this
+  note. Your vault and account details are not shared."*
 
-Reviewers and testers can download `main.js`, `manifest.json`, and `styles.css` from a
-matching [GitHub release](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases),
-place them in a `bondie-docferry` folder inside a test Vault's Community plugins
-directory, restart Obsidian, and enable Bondie-Docferry. Normal users should wait for
-the Community directory listing rather than install files manually.
+## Share without losing control
 
-## Account And Payment
+<img src="docs/assets/android/shares.png" alt="Paginated Shares view with copy and management actions" width="360">
 
-Public Share import does not require an account or payment. The primary Media-to-Note
-workflow requires a Bondie account with DocFerry Pro. Owner Shares, usage, and account
-controls also require sign-in.
+**Your links, your rules.** Copy, open, update, stop, or delete Share history.
 
-Bondie-Docferry and DocFerry are separate products with separate sessions. They share
-one DocFerry Pro membership for the same hosted capabilities. Bondie-Docferry does not
-sell a second subscription. Current pricing, billing terms, and membership management
-are shown by the Bondie Account Center and DocFerry checkout surfaces. The correct
-Obsidian Community payment label is `Paid` because the primary workflow requires Pro.
+- Every public link you create shows up in **Shares** with a clear status:
+  *Published · Password protected · Expired · Stopped*.
+- **Manage** a link: change its title, add or remove a password, set or clear an expiry date.
+- **Stop** a link any time. The note stays in your Vault; the link stops working for everyone.
+- Tidy up afterwards: delete the history records of stopped or expired shares without
+  touching your notes.
 
-See [Support](SUPPORT.md) for subscription management and entitlement recovery.
+## Built for real mobile life
 
-## Disclosures
+Phones interrupt you — calls, app switches, dead batteries. Bondie-Docferry doesn't lose
+your work.
 
-- **Payment:** `Paid`. Public Share import is free; Media-to-Note requires DocFerry Pro.
-- **Account:** A Bondie account is required for Media-to-Note, owner Shares, usage,
-  and account controls. Public Share import works signed out.
-- **Network:** Submitted links and authenticated actions use hosted Bondie,
-  SynapseHub, and DocFerry services. Account avatars may load from the HTTPS image URL
-  supplied by the user's identity provider. Generated notes may retain DocFerry's
-  validated source thumbnail, which Obsidian loads from its HTTPS image host.
-- **Vault access:** The plugin writes only generated/imported notes and declared assets
-  to user-selected folders. It does not scan unrelated Vault files.
-- **Clipboard:** Clipboard access happens only after explicit Paste or Copy actions.
-- **Telemetry and ads:** None in the plugin client.
-- **Source availability:** This client is MIT-licensed and public. Hosted service
-  source is closed and is not included in this repository.
+- **Come back to finished work.** Processing happens on the service, so if you switch
+  apps mid-job, the note picks up where it left off when you return (kept for 24 hours).
+- **Cancel, retry, or delete.** Change your mind mid-processing? Cancel it. A note failed
+  on a bad connection? Retry it. Want the temporary data gone? Delete it from
+  *Account → Processing data*.
+- **Flaky network tolerance.** Brief connection drops trigger an automatic reconnect with
+  a status you can understand, not a dead spinner.
 
-The plugin stores its opaque product session with Obsidian SecretStorage. It never
-receives AI provider keys, Auth0 management credentials, Stripe secrets, or a DocFerry
-user session. Read the complete [Privacy notice](PRIVACY.md) and
-[Security policy](SECURITY.md).
+## Import a DocFerry note from someone else
 
-## Compatibility
+Someone sent you a note via a public DocFerry link? You don't need to be the author to
+keep it.
 
-- Obsidian `1.11.4` or later
-- Android and desktop tested
-- `isDesktopOnly: false`
-- No Node.js or Electron runtime dependency
+- Paste the share link — it imports as a note, **including its attachments**, into your
+  imports folder.
+- **Free, no account needed.** Share import works signed out.
+- Paste the same link twice? It opens the existing note instead of duplicating it.
 
-## Development
+## Know where you stand
 
-```bash
-npm ci
-npm run verify
-npm audit --audit-level=high
-```
+<img src="docs/assets/android/account.png" alt="Account view with connection, membership, and usage status" width="360">
 
-The verification gate runs the Obsidian ESLint rules, TypeScript checks, unit tests,
-production build, bundle syntax check, and release validation. `main.js` is built by
-release automation and is intentionally not committed to the source branch.
+**Useful account status.** Identity, membership, and usage without exposing keys.
 
-Each tagged release contains exactly the install assets expected by Obsidian:
-`main.js`, `manifest.json`, and `styles.css`, with GitHub artifact attestations.
+- Sign in with your Bondie account; see who you're signed in as at a glance.
+- Membership in plain words: **DocFerry Pro** or **Free**.
+- Usage in real numbers: *"5 Media notes left · resets Sep 1"* — no guessing.
+- Membership and account management live in the Bondie Account Center, one tap away.
 
-## Project Links
+> These four screens were captured from the release candidate running in Obsidian 1.12.7
+> on a physical Android phone. Account details, usage values, and Share content were
+> replaced before capture.
 
-- [Latest release](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases/latest)
-- [Changelog](CHANGELOG.md)
-- [Support](SUPPORT.md)
-- [Contributing](CONTRIBUTING.md)
-- [Privacy](PRIVACY.md)
-- [Security](SECURITY.md)
+## Your notes stay yours
+
+- **No lock-in.** Notes are ordinary Markdown files in folders you chose. Disable or
+  uninstall the plugin — the notes are still there, still readable.
+- **Your Vault is not scanned.** The plugin writes only the notes it creates or imports.
+  It never reads or uploads the rest of your Vault.
+- **No telemetry, no ads.** Nothing about your usage leaves the plugin client.
+- **Your session is safe.** Sign-in is stored with Obsidian's own SecretStorage. AI
+  provider keys and payment secrets never touch the plugin.
+
+## Get started
+
+1. You need Obsidian **1.11.4 or later**, on mobile or desktop.
+2. **Current status: release candidate.** Bondie-Docferry is under Community plugin
+   review and not yet in the official directory. The simplest path is to wait for the
+   directory listing.
+3. Testers and reviewers can install manually: download `main.js`, `manifest.json`, and
+   `styles.css` from the [latest release](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases),
+   drop them into `<vault>/.obsidian/plugins/bondie-docferry/`, restart Obsidian, and
+   enable Bondie-Docferry in Community plugins.
+4. Tap the **ship icon** in the ribbon (or run **Open home**), paste your first link,
+   and watch it become a note.
+
+Share import works immediately, no account. Turning articles, audio, and video into
+notes requires a free Bondie account and a DocFerry Pro membership — see below.
+
+## Good to know
+
+**Pricing.** Importing public DocFerry shares is free and needs no account. The
+Media-to-Note workflow (links → notes), owner Shares, and usage tracking require a
+Bondie account with DocFerry Pro. One membership covers both Bondie-Docferry and
+DocFerry — the plugin never sells a second subscription. Current pricing and billing
+are shown by the Bondie Account Center and DocFerry checkout.
+
+**Disclosures** (required for Obsidian Community plugins):
+
+- **Payment:** `Paid`. Share import is free; Media-to-Note requires DocFerry Pro.
+- **Account:** required for Media-to-Note, owner Shares, usage, and account controls.
+  Public Share import works signed out.
+- **Network:** submitted links and signed-in actions use hosted Bondie, SynapseHub, and
+  DocFerry services. Account avatars and validated source thumbnails load over HTTPS
+  from their image hosts.
+- **Vault access:** the plugin writes only generated/imported notes and declared assets
+  to your chosen folders. It does not scan unrelated Vault files.
+- **Clipboard:** accessed only after your explicit **Paste** or **Copy** action.
+- **Telemetry and ads:** none in the plugin client.
+- **Source availability:** this client is MIT-licensed and public. Hosted service source
+  is closed and not part of this repository.
+
+Full details: [Privacy notice](PRIVACY.md) · [Security policy](SECURITY.md) ·
+[Support & subscriptions](SUPPORT.md).
+
+**Compatibility.** Obsidian 1.11.4+ · Android and desktop tested · no Node.js or
+Electron dependency.
+
+## Project links
+
+[Latest release](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases/latest) ·
+[Changelog](CHANGELOG.md) · [Support](SUPPORT.md) · [Contributing](CONTRIBUTING.md) ·
+[Privacy](PRIVACY.md) · [Security](SECURITY.md) · [Engineering docs](ENGINEERING.md)
 
 ## License
 

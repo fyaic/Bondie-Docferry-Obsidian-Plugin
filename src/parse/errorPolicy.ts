@@ -1,5 +1,5 @@
 export const DOCFERRY_CONNECTION_PENDING_MESSAGE =
-  "DocFerry is still connecting. Reopen Bondie-Docferry in a moment to continue.";
+  "DocFerry is still connecting. Reopen MediaFerry in a moment to continue.";
 
 export type ParseInterruption = {
   kind: "docferry-connecting" | "connection-interrupted";
@@ -23,7 +23,7 @@ export function parseInterruption(error: unknown): ParseInterruption | null {
   ) {
     return {
       kind: "connection-interrupted",
-      message: "Connection interrupted. Reopen Bondie-Docferry to continue your note.",
+      message: "Connection interrupted. Reopen MediaFerry to continue your note.",
     };
   }
   return null;

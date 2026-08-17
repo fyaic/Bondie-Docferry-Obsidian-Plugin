@@ -1,24 +1,28 @@
-# Bondie-Docferry
+# MediaFerry
 
 > Turn article, audio, and video links into notes — right where they belong: your Obsidian Vault.
 
 **English** · [中文](README.zh-CN.md) — [Engineering ›](ENGINEERING.md)
 
-[![Release](https://img.shields.io/github/v/release/fyaic/Bondie-Docferry-Obsidian-Plugin?display_name=tag&style=flat-square)](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases/latest)
-[![CI](https://img.shields.io/github/actions/workflow/status/fyaic/Bondie-Docferry-Obsidian-Plugin/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/fyaic/MediaFerry-Obsidian-Plugin?display_name=tag&style=flat-square)](https://github.com/fyaic/MediaFerry-Obsidian-Plugin/releases/latest)
+[![CI](https://img.shields.io/github/actions/workflow/status/fyaic/MediaFerry-Obsidian-Plugin/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/fyaic/MediaFerry-Obsidian-Plugin/actions/workflows/ci.yml)
 [![Obsidian](https://img.shields.io/badge/Obsidian-1.11.4%2B-7c3aed?style=flat-square)](manifest.json)
-[![License](https://img.shields.io/github/license/fyaic/Bondie-Docferry-Obsidian-Plugin?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/github/license/fyaic/MediaFerry-Obsidian-Plugin?style=flat-square)](LICENSE)
 
 You find something worth keeping — an article, a podcast episode, a video. Today that
 means a link rotting in a chat thread or a read-later app you never reopen.
 
-Bondie-Docferry turns that link into a real Markdown note inside your Vault. One paste,
+MediaFerry turns that link into a real Markdown note inside your Vault. One paste,
 and the content becomes something you can read, edit, link, and search — in the app you
 already live in.
 
+It runs on desktop **and** on your phone — and the phone is the design target, not an
+afterthought. Every flow is built for one hand, a small screen, and the messy reality
+of mobile connections.
+
 ## One field for every link
 
-<img src="docs/assets/android/home.png" alt="One link field on the Bondie-Docferry Home view" width="360">
+<img src="docs/assets/android/home.png" alt="One link field on the MediaFerry Home view" width="360">
 
 **One place to start.** Paste a public DocFerry link, an article, an audio, or a video URL.
 
@@ -70,9 +74,13 @@ Bondie Docferry/
 - Tidy up afterwards: delete the history records of stopped or expired shares without
   touching your notes.
 
-## Built for real mobile life
+## Built mobile-first — at home on your phone and desktop
 
-Phones interrupt you — calls, app switches, dead batteries. Bondie-Docferry doesn't lose
+MediaFerry works everywhere Obsidian does. Mobile isn't a shrink-to-fit port: the
+link field, progress states, and recovery flows are designed for one thumb and an
+interrupted connection.
+
+Phones interrupt you — calls, app switches, dead batteries. MediaFerry doesn't lose
 your work.
 
 - **Come back to finished work.** Processing happens on the service, so if you switch
@@ -121,13 +129,13 @@ keep it.
 ## Get started
 
 1. You need Obsidian **1.11.4 or later**, on mobile or desktop.
-2. **Current status: release candidate.** Bondie-Docferry is under Community plugin
+2. **Current status: release candidate.** MediaFerry is under Community plugin
    review and not yet in the official directory. The simplest path is to wait for the
    directory listing.
 3. Testers and reviewers can install manually: download `main.js`, `manifest.json`, and
-   `styles.css` from the [latest release](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases),
-   drop them into `<vault>/.obsidian/plugins/bondie-docferry/`, restart Obsidian, and
-   enable Bondie-Docferry in Community plugins.
+   `styles.css` from the [latest release](https://github.com/fyaic/MediaFerry-Obsidian-Plugin/releases),
+   drop them into `<vault>/.obsidian/plugins/mediaferry/`, restart Obsidian, and
+   enable MediaFerry in Community plugins.
 4. Tap the **ship icon** in the ribbon (or run **Open home**), paste your first link,
    and watch it become a note.
 
@@ -138,7 +146,7 @@ notes requires a free Bondie account and a DocFerry Pro membership — see below
 
 **Pricing.** Importing public DocFerry shares is free and needs no account. The
 Media-to-Note workflow (links → notes), owner Shares, and usage tracking require a
-Bondie account with DocFerry Pro. One membership covers both Bondie-Docferry and
+Bondie account with DocFerry Pro. One membership covers both MediaFerry and
 DocFerry — the plugin never sells a second subscription. Current pricing and billing
 are shown by the Bondie Account Center and DocFerry checkout.
 
@@ -160,12 +168,12 @@ are shown by the Bondie Account Center and DocFerry checkout.
 Full details: [Privacy notice](PRIVACY.md) · [Security policy](SECURITY.md) ·
 [Support & subscriptions](SUPPORT.md).
 
-**Compatibility.** Obsidian 1.11.4+ · Android and desktop tested · no Node.js or
-Electron dependency.
+**Compatibility.** Obsidian 1.11.4+ · works on desktop and on mobile · Android and
+desktop tested · no Node.js or Electron dependency.
 
 ## Project links
 
-[Latest release](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases/latest) ·
+[Latest release](https://github.com/fyaic/MediaFerry-Obsidian-Plugin/releases/latest) ·
 [Changelog](CHANGELOG.md) · [Support](SUPPORT.md) · [Contributing](CONTRIBUTING.md) ·
 [Privacy](PRIVACY.md) · [Security](SECURITY.md) · [Engineering docs](ENGINEERING.md)
 

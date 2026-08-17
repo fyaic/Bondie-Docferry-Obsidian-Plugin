@@ -1,13 +1,20 @@
-# Bondie-Docferry — 工程文档
+# MediaFerry — 工程文档
 
 > 一个对接托管「媒体转笔记」管线的 Obsidian 插件客户端：一个链接入口进，私密 Markdown 笔记出，可选的公开分享带完整生命周期。
 
 [English](ENGINEERING.md) · **中文** — [‹ 用户文档](README.zh-CN.md)
 
-Bondie-Docferry 是一个移动优先的 Obsidian 插件（TypeScript + esbuild，无前端框架），
+MediaFerry（id `mediaferry`）是一个移动优先的 Obsidian 插件（TypeScript + esbuild，无前端框架），
 作为托管 Bondie / SynapseHub / DocFerry 服务的客户端。客户端负责链接接入、移动端
 UI、本地设置、原生 Vault 写入和显式的分享选择；所有需要凭据或重处理的环节都留在
 服务端。
+
+> **命名。** 插件名为 **MediaFerry**（id `mediaferry`）。此前的 RC 版本以
+> *Bondie-Docferry* 之名发布。内部标识符有意保留旧的 `bondie-docferry` 前缀，因为
+> 它们是服务端或存储契约：`obsidian://bondie-docferry-auth` 协议处理器（托管登录的
+> 跳转目标）、`src/auth/session.ts` 中的 SecretStorage 键（改名会让现有会话孤儿化）、
+> `PRODUCTION_SERVER_URL`、`bondie-docferry.pro` 权益键，以及内部 view-type/CSS 标识。
+> 下图中的 *Bondie-Docferry 服务* 是托管后端组件，保持原名。
 
 ## 架构
 
@@ -16,7 +23,7 @@ UI、本地设置、原生 Vault 写入和显式的分享选择；所有需要�
 ```mermaid
 flowchart TB
     User["移动端或桌面端用户"]
-    Plugin["Bondie-Docferry 插件"]
+    Plugin["MediaFerry 插件"]
     Vault["Obsidian Vault\nMarkdown 与附件"]
     Bondie["Bondie-Docferry 服务\n产品会话与移动任务门面"]
     Hub["SynapseHub\n身份、会员与委托授权"]
@@ -62,7 +69,7 @@ flowchart LR
 | **DocFerry** | Media-to-Note 处理、共享配额、公开 Share、导入载荷 | Bondie 产品会话、本地 Vault 访问 |
 | **Obsidian Vault** | 用户所有的 Markdown 与导入附件 | 托管处理或公开链接 |
 
-安全属性：Bondie-Docferry 与 DocFerry 保持相互独立的产品会话、不共享 cookie；
+安全属性：Bondie-Docferry 服务与 DocFerry 保持相互独立的产品会话、不共享 cookie；
 跨产品调用使用短时效、用途绑定的 capability；AI 与媒体供应商凭据永不离开托管
 DocFerry 运行时；插件不会拿到 Auth0 管理 secret、SynapseHub 管理 token、Stripe
 secret、供应商 key 或 DocFerry 用户 token。另见
@@ -95,7 +102,7 @@ secret、供应商 key 或 DocFerry 用户 token。另见
 
 传输错误最多容忍 3 次并做指数退避（`src/parse/retryPolicy.ts`，状态显示
 *“连接中断。正在重连。”*）。超过次数后，任务被归类为**中断**而非失败：保留
-pending 记录，UI 提示 *“重新打开 Bondie-Docferry 继续你的笔记。”* 3 分钟超时而
+pending 记录，UI 提示 *“重新打开 MediaFerry 继续你的笔记。”* 3 分钟超时而
 服务端仍在处理时同样如此。
 
 ### 移动端韧性：`pendingParse`

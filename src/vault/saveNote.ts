@@ -91,5 +91,5 @@ function sanitizeFileName(value: string): string {
     .replace(/\s+/g, " ")
     .trim();
 
-  return cleaned || "Bondie Docferry Capture";
+  return cleaned || "MediaFerry Capture";
 }

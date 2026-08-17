@@ -21,7 +21,7 @@ export default defineConfig([
         "warn",
         {
           acronyms: ["API", "URL"],
-          brands: ["Account Center", "Bondie", "Bondie-Docferry", "DocFerry", "Obsidian"],
+          brands: ["Account Center", "Bondie", "DocFerry", "MediaFerry", "Obsidian"],
         },
       ],
     },

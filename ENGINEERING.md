@@ -1,14 +1,23 @@
-# Bondie-Docferry — Engineering
+# MediaFerry — Engineering
 
 > An Obsidian plugin client for a hosted media-to-note pipeline: one link field in,
   private Markdown notes out, optional public Shares with a full lifecycle.
 
 **English** · [中文](ENGINEERING.zh-CN.md) — [‹ User README](README.md)
 
-Bondie-Docferry is a mobile-first Obsidian plugin (TypeScript, esbuild, no framework)
+MediaFerry (id `mediaferry`) is a mobile-first Obsidian plugin (TypeScript, esbuild, no framework)
 that fronts the hosted Bondie / SynapseHub / DocFerry services. The client owns link
 intake, the mobile UI, local settings, native Vault writes, and the explicit sharing
 choice. Everything that needs credentials or heavy processing stays server-side.
+
+> **Naming.** The plugin is named **MediaFerry** (id `mediaferry`). Its release
+> candidates shipped under the earlier name *Bondie-Docferry*. Internal identifiers
+> intentionally keep the legacy `bondie-docferry` prefix because they are server or
+> storage contracts: the `obsidian://bondie-docferry-auth` protocol handler (the hosted
+> login redirect target), the SecretStorage keys in `src/auth/session.ts` (renaming
+> would orphan existing sessions), `PRODUCTION_SERVER_URL`, the `bondie-docferry.pro`
+> entitlement key, and the internal view-type/CSS identifiers. The *Bondie-Docferry
+> service* in the diagram below is a hosted backend component and keeps its name.
 
 ## Architecture
 
@@ -17,7 +26,7 @@ The system flow, end to end:
 ```mermaid
 flowchart TB
     User["User on mobile or desktop"]
-    Plugin["Bondie-Docferry plugin"]
+    Plugin["MediaFerry plugin"]
     Vault["Obsidian Vault\nMarkdown and assets"]
     Bondie["Bondie-Docferry service\nproduct session and mobile task facade"]
     Hub["SynapseHub\nidentity, membership, and delegated authorization"]
@@ -63,7 +72,7 @@ flowchart LR
 | **DocFerry** | Media-to-Note processing, shared quota, public Shares, import payloads | Bondie product session, local Vault access |
 | **Obsidian Vault** | User-owned Markdown and imported assets | Hosted processing or public links |
 
-Security properties: Bondie-Docferry and DocFerry keep separate product sessions with no
+Security properties: the Bondie-Docferry service and DocFerry keep separate product sessions with no
 shared cookies; cross-product calls use short-lived, purpose-bound capabilities; AI and
 media provider credentials never leave the hosted DocFerry runtime; the plugin receives
 no Auth0 management secret, SynapseHub management token, Stripe secret, provider key, or
@@ -100,7 +109,7 @@ deadline. Job creation sends an `Idempotency-Key` so retries cannot double-submi
 Transport errors are tolerated up to 3 times with exponential backoff
 (`src/parse/retryPolicy.ts`, status *"Connection interrupted. Reconnecting."*). Past
 that, the job is classified as an **interruption** rather than a failure: the pending
-record is kept and the UI says *"Reopen Bondie-Docferry to continue your note."* The
+record is kept and the UI says *"Reopen MediaFerry to continue your note."* The
 same applies when the 3-minute deadline expires while the server is still working.
 
 ### Mobile resilience: `pendingParse`

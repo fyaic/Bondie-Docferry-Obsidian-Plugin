@@ -1,21 +1,24 @@
-# Bondie-Docferry
+# MediaFerry
 
 > 把文章、音频、视频链接变成笔记 —— 放在它们本该在的地方：你的 Obsidian 仓库（Vault）。
 
 [English](README.md) · **中文** — [工程文档 ›](ENGINEERING.zh-CN.md)
 
-[![Release](https://img.shields.io/github/v/release/fyaic/Bondie-Docferry-Obsidian-Plugin?display_name=tag&style=flat-square)](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases/latest)
-[![CI](https://img.shields.io/github/actions/workflow/status/fyaic/Bondie-Docferry-Obsidian-Plugin/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/fyaic/MediaFerry-Obsidian-Plugin?display_name=tag&style=flat-square)](https://github.com/fyaic/MediaFerry-Obsidian-Plugin/releases/latest)
+[![CI](https://img.shields.io/github/actions/workflow/status/fyaic/MediaFerry-Obsidian-Plugin/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/fyaic/MediaFerry-Obsidian-Plugin/actions/workflows/ci.yml)
 [![Obsidian](https://img.shields.io/badge/Obsidian-1.11.4%2B-7c3aed?style=flat-square)](manifest.json)
-[![License](https://img.shields.io/github/license/fyaic/Bondie-Docferry-Obsidian-Plugin?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/github/license/fyaic/MediaFerry-Obsidian-Plugin?style=flat-square)](LICENSE)
 
 你刷到一条值得收藏的东西 —— 一篇文章、一期播客、一个视频。今天的结局往往是：链接烂在聊天记录里，或者躺在一个你再也不会打开的稍后读应用里。
 
-Bondie-Docferry 把这条链接变成你仓库里一篇真正的 Markdown 笔记。粘贴一次，内容就变成你可以阅读、编辑、双向链接、全文搜索的东西 —— 就在你天天用的那个应用里。
+MediaFerry 把这条链接变成你仓库里一篇真正的 Markdown 笔记。粘贴一次，内容就变成你可以阅读、编辑、双向链接、全文搜索的东西 —— 就在你天天用的那个应用里。
+
+它在桌面端和手机端都能用 —— 而且手机才是设计目标，不是顺手兼容。所有流程都为
+单手操作、小屏幕和真实世界里不稳的移动网络而设计。
 
 ## 一个输入框，装下所有链接
 
-<img src="docs/assets/android/home.png" alt="Bondie-Docferry 主界面的唯一链接输入框" width="360">
+<img src="docs/assets/android/home.png" alt="MediaFerry 主界面的唯一链接输入框" width="360">
 
 **只有一个起点。** 粘贴公开的 DocFerry 链接、文章、音频或视频网址都可以。
 
@@ -58,9 +61,12 @@ Bondie Docferry/
 - 随时 **停止（Stop）** 一个链接。笔记留在你的仓库里；链接对所有人立刻失效。
 - 事后还能收拾干净：删除已停止/已过期分享的历史记录，完全不碰你的笔记。
 
-## 为真实的手机生活而设计
+## 移动优先 —— 手机和桌面都是主场
 
-手机总会打断你 —— 来电、切应用、没电关机。Bondie-Docferry 不会弄丢你的工作。
+MediaFerry 在 Obsidian 支持的每个平台上都能用。移动端不是缩小版：链接输入框、
+进度状态和恢复流程，都是为单手操作和随时可能被打断的连接而设计的。
+
+手机总会打断你 —— 来电、切应用、没电关机。MediaFerry 不会弄丢你的工作。
 
 - **回来时工作还在。** 处理在服务端进行，中途切走应用、甚至 Obsidian 被杀掉，回来时笔记会接着做（保留 24 小时）。
 - **可取消、可重试、可删除。** 处理到一半改主意了？取消。网络不好失败了？重试。想清掉临时数据？在 *账户 → 处理数据（Processing data）* 里删除。
@@ -97,15 +103,15 @@ Bondie Docferry/
 ## 开始使用
 
 1. 需要 Obsidian **1.11.4 或更高版本**，手机端或桌面端均可。
-2. **当前状态：发布候选（RC）。** Bondie-Docferry 正在进行社区插件审核，尚未进入官方插件目录。最省事的方式是等目录上架。
-3. 测试者和审核者可以手动安装：从 [最新 release](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases) 下载 `main.js`、`manifest.json`、`styles.css`，放进 `<vault>/.obsidian/plugins/bondie-docferry/`，重启 Obsidian，在社区插件里启用 Bondie-Docferry。
+2. **当前状态：发布候选（RC）。** MediaFerry 正在进行社区插件审核，尚未进入官方插件目录。最省事的方式是等目录上架。
+3. 测试者和审核者可以手动安装：从 [最新 release](https://github.com/fyaic/MediaFerry-Obsidian-Plugin/releases) 下载 `main.js`、`manifest.json`、`styles.css`，放进 `<vault>/.obsidian/plugins/mediaferry/`，重启 Obsidian，在社区插件里启用 MediaFerry。
 4. 点击侧边栏的 **船图标**（或运行 **Open home** 命令），粘贴第一条链接，看它变成笔记。
 
 导入分享开箱即用、无需账户。把文章、音频、视频变成笔记需要免费 Bondie 账户和 DocFerry Pro 会员 —— 见下文。
 
 ## 需要知道的事
 
-**定价。** 导入公开 DocFerry 分享免费、无需账户。媒体转笔记（链接 → 笔记）、你创建的分享、用量查看，需要 Bondie 账户和 DocFerry Pro 会员。一个会员同时覆盖 Bondie-Docferry 和 DocFerry —— 插件绝不卖第二份订阅。当前价格与账单条款以 Bondie Account Center 和 DocFerry 收银台页面为准。
+**定价。** 导入公开 DocFerry 分享免费、无需账户。媒体转笔记（链接 → 笔记）、你创建的分享、用量查看，需要 Bondie 账户和 DocFerry Pro 会员。一个会员同时覆盖 MediaFerry 和 DocFerry —— 插件绝不卖第二份订阅。当前价格与账单条款以 Bondie Account Center 和 DocFerry 收银台页面为准。
 
 **披露**（Obsidian 社区插件要求）：
 
@@ -119,11 +125,11 @@ Bondie Docferry/
 
 完整细节：[隐私声明](PRIVACY.md) · [安全策略](SECURITY.md) · [支持与订阅](SUPPORT.md)。
 
-**兼容性。** Obsidian 1.11.4+ · 已在 Android 和桌面端测试 · 不依赖 Node.js 或 Electron。
+**兼容性。** Obsidian 1.11.4+ · 桌面端与移动端都可用 · 已在 Android 和桌面端实测 · 不依赖 Node.js 或 Electron。
 
 ## 项目链接
 
-[最新 release](https://github.com/fyaic/Bondie-Docferry-Obsidian-Plugin/releases/latest) ·
+[最新 release](https://github.com/fyaic/MediaFerry-Obsidian-Plugin/releases/latest) ·
 [更新日志](CHANGELOG.md) · [支持](SUPPORT.md) · [贡献](CONTRIBUTING.md) ·
 [隐私](PRIVACY.md) · [安全](SECURITY.md) · [工程文档](ENGINEERING.zh-CN.md)
 

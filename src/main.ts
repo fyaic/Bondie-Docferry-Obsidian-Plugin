@@ -116,7 +116,7 @@ export default class BondieDocferryPlugin extends Plugin {
       setting?: { open(): void; openTabById(id: string): void };
     };
     if (!appWithSettings.setting) {
-      new Notice("Open Obsidian settings and choose Bondie-Docferry.");
+      new Notice("Open Obsidian settings and choose MediaFerry.");
       return;
     }
     appWithSettings.setting.open();
@@ -148,7 +148,7 @@ export default class BondieDocferryPlugin extends Plugin {
     try {
       const response = await requestUrl({ url });
       const ok = response.status >= 200 && response.status < 300;
-      new Notice(ok ? "Bondie-Docferry server is reachable." : `Server returned ${response.status}.`);
+      new Notice(ok ? "MediaFerry server is reachable." : `Server returned ${response.status}.`);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unknown error";
       new Notice(`Server check failed: ${message}`);
@@ -159,7 +159,7 @@ export default class BondieDocferryPlugin extends Plugin {
     const code = normalizeLoginCode(params.code ?? "");
     const state = normalizeLoginState(params.state ?? "");
     if (!code || !state) {
-      new Notice("Sign-in could not return safely. Please try again from Bondie-Docferry.");
+      new Notice("Sign-in could not return safely. Please try again from MediaFerry.");
       return;
     }
     if (!matchesPendingLoginState(state)) {
@@ -167,7 +167,7 @@ export default class BondieDocferryPlugin extends Plugin {
         await this.openHome();
         return;
       }
-      new Notice("Sign-in could not return safely. Please try again from Bondie-Docferry.");
+      new Notice("Sign-in could not return safely. Please try again from MediaFerry.");
       return;
     }
 

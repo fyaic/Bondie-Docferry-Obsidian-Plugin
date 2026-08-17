@@ -1287,7 +1287,7 @@ export class BondieHomeView extends ItemView {
         message: "Sign in before starting a server parse.",
       };
       this.render();
-      new Notice("Sign in to Bondie-Docferry before parsing.");
+      new Notice("Sign in before creating notes.");
       return;
     }
 
@@ -1407,7 +1407,7 @@ export class BondieHomeView extends ItemView {
       }
 
       if (!isRemoteTerminal(remoteJob)) {
-        this.setLocalStatus("Still working. Reopen Bondie-Docferry to continue.");
+        this.setLocalStatus("Still working. Reopen MediaFerry to continue.");
         new Notice("Your note is still working and will continue when you reopen the plugin.");
         return;
       }
@@ -1898,7 +1898,7 @@ export class BondieHomeView extends ItemView {
     this.activeWorkspacePanel = "home";
     this.render();
     new Notice(sessionPersisted
-      ? "Bondie-Docferry account connected."
+      ? "Bondie account connected."
       : "Connected, but Obsidian could not save this sign-in securely.");
   }
 
@@ -2101,7 +2101,7 @@ export class BondieHomeView extends ItemView {
     } catch (error) {
       const message = error instanceof Error ? error.message : "Could not save note.";
       await this.advanceParseStage("failed", message);
-      new Notice(`${message} Review the result in Bondie-Docferry and save again.`);
+      new Notice(`${message} Review the result in MediaFerry and save again.`);
       return false;
     } finally {
       this.isSaving = false;

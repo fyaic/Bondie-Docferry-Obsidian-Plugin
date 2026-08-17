@@ -1,7 +1,7 @@
 {
   "id": "mediaferry",
   "name": "MediaFerry",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "minAppVersion": "1.11.4",
   "description": "Paste an article, audio, or video link and get a Markdown note in your vault. Import DocFerry shares. Built mobile-first: specially optimized for phones, works great on desktop.",
   "author": "Bondie Labs",

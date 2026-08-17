@@ -1,11 +1,16 @@
-# Bondie-Docferry 0.1.2
+# MediaFerry 0.1.3
 
-This patch restores video thumbnails in generated Media-to-Note documents.
+This patch unifies the plugin identity as MediaFerry.
 
-Bondie-Docferry now preserves DocFerry's validated source thumbnail when saving a
-generated note to the Vault and when creating a public Share from that result. The
-existing duplicate-title cleanup remains unchanged. Privacy documentation now also
-explains that Obsidian may load the retained thumbnail from its HTTPS image host.
+The manifest id is now `mediaferry`, matching the repository name as required for
+Obsidian Community review, and the display name is now MediaFerry. User-facing
+strings and default note folders follow the same branding. Server and storage
+contract keys are unchanged, so accounts and entitlements from earlier builds
+remain valid.
+
+Manual installs from 0.1.2 or earlier should re-install from this release into
+`<vault>/.obsidian/plugins/mediaferry/` and remove any previous `bondie-docferry`
+plugin folder to avoid duplicate entries.
 
 This is the current candidate for Obsidian Community review. Catalog submission is
 handled separately by the product team.
